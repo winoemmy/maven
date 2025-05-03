@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maven Group</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        body {
+            padding-top: 60px;
+        }
+        nav {
+            display: none;
+            flex-direction: column;
+            background-color: #2e2e2e;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+        }
+        nav a {
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #4d4d4d;
+        }
+        .menu-toggle {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .hero {
+            text-align: center;
+            padding: 2rem;
+            background-color: #e0e0e0;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            border-bottom: 4px solid #cc3c3c;
+            display: inline-block;
+        }
+        .section {
+            padding: 2rem;
+            text-align: center;
+        }
+        .feature {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .feature div {
+            max-width: 300px;
+            padding: 1rem;
+        }
+        .cta {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .calculator-section {
+            padding: 2rem;
+        }
+        .calculator {
+            margin: 1rem 0;
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            display: block;
+            margin: 0.5rem auto;
+            padding: 0.5rem;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>MAVEN</div>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <nav id="mobileMenu">
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#calculators">Calculators</a>
+    </nav>
+
+    <section class="hero">
+        <h1>WELCOME</h1>
+        <p>At Maven Group, our mission is to engineer innovative, sustainable, and precise solutions that shape the built environment.</p>
+        <button onclick="window.open('https://www.linkedin.com/in/owinoemmanuel', '_blank')">Learn more</button>
+    </section>
+
+    <section class="section feature">
+        <div>
+            <h3>Innovation</h3>
+            <p>We engineer cutting-edge solutions, embracing new technologies and ideas to shape the future.</p>
+        </div>
+        <div>
+            <h3>Precision</h3>
+            <p>We deliver with exactness and attention to detail, ensuring the highest standards in every project.</p>
+        </div>
+        <div>
+            <h3>Integrity</h3>
+            <p>We operate with transparency, honesty, and commitment, building trust through every partnership.</p>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>SUBSCRIBE TO OUR MAILING LIST AT WINOEMMY2@GMAIL.COM</h2>
+    </section>
+
+    <section class="calculator-section" id="calculators">
+        <h2>Concrete Mix Design Calculator (ACI Method)</h2>
+        <div class="calculator">
+            <label for="cementContent">Cement Content (kg/m³):</label>
+            <input type="number" id="cementContent" placeholder="e.g., 350">
+
+            <label for="waterCementRatio">Water-Cement Ratio:</label>
+            <input type="number" step="0.01" id="waterCementRatio" placeholder="e.g., 0.45">
+
+            <label for="waterContent">Water Content (kg/m³):</label>
+            <input type="number" id="waterContent" placeholder="e.g., 157">
+
+            <label for="coarseAggregate">Coarse Aggregate (kg/m³):</label>
+            <input type="number" id="coarseAggregate" placeholder="e.g., 1040">
+
+            <label for="fineAggregate">Fine Aggregate (kg/m³):</label>
+            <input type="number" id="fineAggregate" placeholder="e.g., 715">
+
+            <button onclick="calculateMixDesign()">Calculate Mix Proportions</button>
+            <div id="mixDesignResult" style="margin-top: 1rem; font-weight: bold;"></div>
+        </div>
+
+        <h2>Reinforcement Calculator (Beam Section)</h2>
+        <div class="calculator">
+            <label for="sectionType">Select Section Type:</label>
+            <select id="sectionType">
+                <option value="beam">Column Beam</option>
+                <option value="solid">Solid Slab</option>
+                <option value="maxspan">Maxspan Slab</option>
+            </select>
+
+            <label for="b">Width of Section (mm):</label>
+            <input type="number" id="b" placeholder="e.g., 300">
+
+            <label for="d">Effective Depth (mm):</label>
+            <input type="number" id="d" placeholder="e.g., 500">
+
+            <label for="L">Span Length (m):</label>
+            <input type="number" id="L" placeholder="e.g., 4.5">
+
+            <label for="load">Total Service Load (kN/m):</label>
+            <input type="number" id="load" placeholder="e.g., 25">
+
+            <label for="fck">Concrete Grade fck (MPa):</label>
+            <input type="number" id="fck" placeholder="e.g., 25">
+
+            <label for="fy">Steel Grade fy (MPa):</label>
+            <input type="number" id="fy" placeholder="e.g., 500">
+
+            <button onclick="calculateBeamReinforcement()">Calculate Steel Area</button>
+
+            <div id="rebarResult" style="margin-top: 1rem; font-weight: bold;"></div>
+        </div>
+    </section>
+
+    <footer class="cta" id="contact">
+        <p><strong>Contact Us:</strong><br>
+        Owino Emmanuel<br>
+        Phone: +256782160620 / +256758151289<br>
+        Email: winoemmy2@gmail.com</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        function calculateMixDesign() {
+            const cement = parseFloat(document.getElementById('cementContent').value);
+            const wcr = parseFloat(document.getElementById('waterCementRatio').value);
+            const water = parseFloat(document.getElementById('waterContent').value);
+            const ca = parseFloat(document.getElementById('coarseAggregate').value);
+            const fa = parseFloat(document.getElementById('fineAggregate').value);
+
+            if ([cement, wcr, water, ca, fa].some(isNaN)) {
+                document.getElementById('mixDesignResult').innerText = 'Please fill in all fields correctly.';
+                return;
+            }
+
+            document.getElementById('mixDesignResult').innerHTML = `Concrete Mix Ratio:<br>
+                Cement: ${cement} kg/m³<br>
+                Water: ${water} kg/m³ (w/c = ${wcr})<br>
+                Coarse Aggregate: ${ca} kg/m³<br>
+                Fine Aggregate: ${fa} kg/m³`;
+        }
+
+        function calculateBeamReinforcement() {
+            const b = parseFloat(document.getElementById('b').value);
+            const d = parseFloat(document.getElementById('d').value);
+            const L = parseFloat(document.getElementById('L').value);
+            const w = parseFloat(document.getElementById('load').value);
+            const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+
+            if ([b, d, L, w, fck, fy].some(isNaN)) {
+                document.getElementById('rebarResult').innerText = 'Please enter all values correctly.';
+                return;
+            }
+
+            const Mu = (w * Math.pow(L, 2)) / 8;
+            const Mu_Nmm = Mu * 1e6;
+            const xu_lim = 0.48 * d;
+            const jd = d - 0.42 * xu_lim;
+            const Ast = Mu_Nmm / (0.87 * fy * jd);
+
+            let type = 'Singly Reinforced';
+            if (Mu > 1.5 * fck * b * d * d / 1000000) {
+                type = 'Check Doubly Reinforced';
+            }
+
+            document.getElementById('rebarResult').innerHTML =
+                `Design Moment Mu: ${Mu.toFixed(2)} kNm<br>
+                Required Area of Steel (Ast): ${Ast.toFixed(2)} mm²<br>
+                Section Type: ${type}`;
+        }
+    </script>
+</body>
+</html>
